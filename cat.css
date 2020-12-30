@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Krub');
+body{
+    margin: 0px;
+    color: white;
+}
+h1{
+    font-family: 'Kurb',sans-serif;
+    text-align: center;
+}
+
+.codearea #idpromo{
+  width: 50%;
+  display: block;
+  text-align: center;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #36aef4;
+    color: white;
+    transition: 0.3s;
+  }
+  
+  body {
+    font-family: Arial;
+  }
+  
+  .coupon {
+    border: 5px dotted #bbb;
+    width: 90%;
+    border-radius: 15px;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  
+  .container {
+    padding: 2px 16px;
+    background-color: #f1f1f1;
+  }
+  .containercode{
+    color: black;
+  }
+  .promo {
+    background: rgb(0, 0, 0);
+    padding: 3px;
+  }
+  
+  .expire {
+    color: red;
+  }
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+.catagory{
+    text-align: center;
+    margin:auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    display: inline;
+    padding: 10px;
+}
+.grid-container{
+}
+.grid-row{
+}
+@media(max-width:900px){
+    .catagory{
+        text-align: center;
+        margin:auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: flex-start;
+        display: flex;
+        padding: 10px;
+    }
+    .product{
+        margin-bottom: 100px;
+    }
+}
+.product{
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'Krub';
+    width: 300px;
+    text-align:center;
+}
+.product img{
+    width: 100%;
+}
+.bottom{
+    margin-top: 50px;
+    background-color: rgb(44, 44, 44);
+    height: 150px;
+    width: 100%;
+}
+.buyNowButton{
+    margin: 0px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: all 0.2s;
+}
+.buyNowButton:hover{
+    color:white;
+    background-color: rgb(28, 146, 224);
+    border: 2px solid rgb(28, 146, 224);
+}
+@media(max-width:900px){
+    .logo{
+        display: none;
+    }
+}

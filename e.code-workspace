@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\..\\PagePreloadingEffect\\css"
+		},
+		{
+			"path": "..\\..\\..\\PagePreloadingEffect\\fonts"
+		},
+		{
+			"path": "..\\..\\..\\PagePreloadingEffect\\img"
+		},
+		{
+			"path": "..\\..\\..\\PagePreloadingEffect\\js"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,33 @@
+body{text-align: center; color: white;}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    transition: 0.3s;
+  }
+  
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+  .bold{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: black;
+    text-align: left;
+    font-size: 30px;
+  }
+  .alertptag{
+    font-size: 20px;
+  }

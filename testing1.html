@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            width: 100%;
+    
+        }
+        .input {
+    position:fixed;
+    left:0;
+    top:0;
+    display:table;
+    table-layout:fixed;
+    width: 100%;
+    height:100%;
+    
+    background:rgba(0,0,0,0.33);
+}
+.inpbox {
+    display:table-cell;
+    vertical-align:middle;
+    font-family:sans-serif;
+    font-size:4vw;
+}
+.inpbox>div {
+    max-width:60%;
+    max-height:60%;
+    margin:auto;
+    padding:1ex;
+    overflow:visible; /* by safety */
+    background:silver;
+    border:1px solid gray;
+    box-shadow:0.5ex 0.5ex 2ex 0.2ex rgba(0,0,0,0.9);
+}
+.inpbox .txt {
+    font-size: 30px;
+    height:80%;
+    margin-bottom:1ex;
+    white-space:pre-line;
+}
+.inpbox .cmd {
+    margin-top:0.5ex;
+    font-size: 0;
+}
+.inpbox input {
+    width:48.5%;
+    font-size:3.5vw;
+}
+.inpbox input[type=text] {
+    width:100%;
+    margin-bottom:1ex;
+}
+.inpbox input:last-child {
+    float:right;
+}
+
+/* show / hide */
+.input {
+    transition:top 1ms linear, opacity 0.6s linear;
+}
+.input.hide {
+    top:-100%;
+    opacity:0;
+    transition:top 1ms linear 0.8s, opacity 0.6s linear 0.2s;
+}
+
+.inpbox {
+    transition:filter 0.8s ease-in-out, opacity 0.6s linear;
+}
+.input.hide .inpbox {
+    top:-100%;
+    filter:blur(20px);
+    opacity:0;
+}
+
+    </style>
+</head>
+<body>
+    <div id="inpbox" class="input hide">
+        <div class="inpbox">
+            <div>
+                <div class="txt">What's your answer?</div>
+                <input type="text" style="display: none;" /> 
+                <div class="cmd">
+                    <input type="button" value="Yes">
+                    <input type="button" value="Cancel">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+function Input(cbfn=function(r){},href=null,text='What\'s your answer?',lab1='Yes',lab2="Cancel") {
+
+/* only once instance */
+   if (Input.length!==0) return Input.items[0];
+
+   var _iobj = Input.length;
+   var _href = href;
+   var _cbfn = cbfn;
+   var _text = text;
+   var _lab1 = lab1;
+   var _lab2 = lab2;
+   
+   if (_href===null)
+      if (!document.querySelector('#inpbox')) {
+         _href = document.createElement('div');
+         _href.className = "input";
+         _href.id = "inpbox";
+      }
+      else _href = "inpbox";
+      
+   if (typeof _href=='string') _href = document.querySelector('#'+_href);
+
+   Input.items[_iobj] = _href;
+   Input.length++;
+   
+   _btn = _href.getElementsByTagName('input');
+   var i = _btn.length;
+   _btn[i-2].value = _lab1;
+   _btn[i-1].value = _lab2;
+   while (i--)
+      if (_btn[i].type=="button") _btn[i].addEventListener('click',Input.genCallback(_iobj,_cbfn,_btn[0]));
+   
+   this.ask = function(msg=null,pholder='',val='') {
+      if (msg!==null) {
+          var d = _href.getElementsByTagName('div');
+          var i = d.length;
+          while (i--) {
+             if (d[i].className=='txt') {
+                d[i].innerHTML = msg;
+                break;
+             }
+          }
+          _btn[0].value = val;
+          _btn[0].placeholder = pholder;
+      }
+      Input.delClass(_href);
+   };
+   
+
+}
+Input.length = 0;
+Input.items = {};
+Input.genCallback = function(io,cb,inp) {
+      return function(e) {
+         e.stopPropagation();
+         Input.addClass(Input.items[io],'hide');
+         cb(this.value,inp.value);
+      };
+   }
+   
+Input.addClass = function(o,c) {
+/* TO DO: test if already set */
+   o.className += ' '+c;
+};
+
+Input.delClass = function(o,c) {
+/* TO DO: test if already set */
+   o.className = 'input';
+};
+
+Input.hide = function(iobj) {
+   Input.addClass(Input.items[iobj],'hide');
+};
+Input.yes = function(iobj) {
+   Input.hide(iobj);
+   return true;
+};
+Input.no = function(iobj) {
+   Input.hide(iobj);
+   return false;
+};
+
+/*
+        <div id="inpbox" class="input hide"><div class="inpbox"><div>
+            <div class="txt">What's your answer?</div>
+            <input type="text">
+            <div class="cmd">
+                <input type="button" value="Yes">
+                <input type="button" value="Cancel">
+            </div>
+        </div></div>
+*/
+
+window.onload = function() {
+
+   window.setTimeout(show,1000);
+
+   document.body.onclick = show;
+
+   var test = new Input(answerTest);
+
+   function show(e) {
+//      if (e.target.toString()!='[object HTMLInputElement]')
+         test.ask('Are you sure you would like to purchase this?');
+   }
+
+   function answerTest(r,v) {
+       if (r=='Yes') window.location.href = "checkout.HTML";
+       if (r == 'Cancel') window.location.href = 'catalog.html';
+   }
+
+};
+
+
+// function answerTest(r,v) {
+//        if (r=='Cancel') window.location.href = "catalog.html";
+//    }
+
+
+       
+       </script>
+</body>
+</html>
